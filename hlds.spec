@@ -15,7 +15,7 @@ License:	Unknown
 Group:		Applications/Games
 Source0:	http://paszczus.darpa.pl/hlds/%{name}_l_3111_full.tar.gz
 # Source0-md5:	358af895896bf6cf98d7ea4ac6072fd2
-Source1:	http://www.adrenaline.com.br/downloads/mods/halflife/cstrike/linux/cs_15_full.tar.gz
+Source1:	http://paszczus.darpa.pl/hlds/cs_15_full.tar.gz
 # Source1-md5:	d688876fa2864ff69ff808432c9e6fe7
 Source2:	http://paszczus.darpa.pl/hlds/%{name}_l_3111e_update.tar.gz
 # Source2-md5:	0156a57f81b38c7a443013ef57e20257
