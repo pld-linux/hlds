@@ -10,10 +10,10 @@ Summary(pl):	Dedykowany serwer gry Half-Life dla Linuksa
 Name:		hlds
 Version:	1.1.2.0.STEAM
 Release:	0.1
-License:	Unknown (Distributable)
+License:	custom (EULA), non-distributable
 Group:		Applications/Games
 Source0:	http://paszczus.darpa.pl/hlds_l_1120_full.tgz
-# Source0-md5:	22000aea56f7565119992587ae88dd95
+# NoSource0-md5:	22000aea56f7565119992587ae88dd95
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/bin/id
 Requires(pre):	/usr/sbin/groupadd
