@@ -9,7 +9,7 @@ Summary:	Half-Life - Linux Dedicated Server
 Summary(pl):	Dedykowany serwer gry Half-Life dla Linuksa
 Name:		hlds
 Version:	1.1.2.0.STEAM
-Release:	0.3
+Release:	1
 License:	custom (EULA), non-distributable
 Group:		Applications/Games
 Source0:        http://paszczus.darpa.pl/%{name}_l_1120_full.tar.bz2
@@ -239,27 +239,29 @@ fi
 %dir %{_chroot_home}/cstrike
 %{_chroot_home}/cstrike/*.wad
 %{_chroot_home}/cstrike/*.txt
-#%{_chroot_home}/cstrike/cs_cbble.rad
-#%{_chroot_home}/cstrike/cstrike.ico
+%{_chroot_home}/cstrike/GameServerConfig.vdf
+%{_chroot_home}/cstrike/cs_havana.WAD
 %{_chroot_home}/cstrike/liblist.gam
 %{_chroot_home}/cstrike/delta.lst
 %{_chroot_home}/cstrike/server.cfg
-#%dir %{_chroot_home}/cstrike/classes
-#%{_chroot_home}/cstrike/classes/*.txt
+%{_chroot_home}/cstrike/steam.inf
 %dir %{_chroot_home}/cstrike/cl_dlls
 %{_chroot_home}/cstrike/cl_dlls/client.dll
 %dir %{_chroot_home}/cstrike/dlls
 %{_chroot_home}/cstrike/dlls/cs_i386.so
+%{_chroot_home}/cstrike/dlls/cs_amd64.so
+%{_chroot_home}/cstrike/dlls/mp.dll
 %dir %{_chroot_home}/cstrike/events
 %{_chroot_home}/cstrike/events/*.sc
+%dir %{_chroot_home}/cstrike/manual
+%{_chroot_home}/cstrike/manual/manual.htm
 %dir %{_chroot_home}/cstrike/maps
-#%{_chroot_home}/cstrike/maps/*.txt
 %{_chroot_home}/cstrike/maps/*.bsp
-#%{_chroot_home}/cstrike/maps/de_storm.res
-#%dir %{_chroot_home}/cstrike/media
-#%{_chroot_home}/cstrike/media/*.wav
 %dir %{_chroot_home}/cstrike/models
 %{_chroot_home}/cstrike/models/*.mdl
+%{_chroot_home}/cstrike/models/grass_01.spr
+%dir %{_chroot_home}/cstrike/models/shield
+%{_chroot_home}/cstrike/models/shield/*.mdl
 %dir %{_chroot_home}/cstrike/models/player
 %dir %{_chroot_home}/cstrike/models/player/arctic
 %{_chroot_home}/cstrike/models/player/arctic/arctic.mdl
@@ -303,7 +305,9 @@ fi
 %{_chroot_home}/cstrike/sound/weapons/*.wav
 %dir %{_chroot_home}/cstrike/sprites
 %{_chroot_home}/cstrike/sprites/*.spr
-#%{_chroot_home}/cstrike/sprites/*.txt
+%{_chroot_home}/cstrike/sprites/scope_arc.tga
+%dir %{_chroot_home}/cstrike/sprites/effects
+%{_chroot_home}/cstrike/sprites/effects/*.spr
 %endif
 
 %if %{with dmc}
