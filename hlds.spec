@@ -14,12 +14,15 @@ License:	custom (EULA), non-distributable
 Group:		Applications/Games
 Source0:        http://paszczus.darpa.pl/%{name}_l_1120_full.tar.bz2
 # NoSource0-md5:	12ff9d0161575b8b8180b7f0041af036
-Requires(pre):	/usr/bin/getgid
+BuildRequires:	rpmbuild(macros) >= 1.159
 Requires(pre):	/bin/id
+Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
 Requires(pre):	/usr/sbin/useradd
 Requires(postun):	/usr/sbin/groupdel
 Requires(postun):	/usr/sbin/userdel
+Provides:	group(hlds)
+Provides:	user(hlds)
 ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -122,28 +125,28 @@ mv valve/* $RPM_BUILD_ROOT%{_chroot_home}/valve
 rm -rf $RPM_BUILD_ROOT
 
 %pre
-if [ -n "`getgid hlds`" ]; then
-	if [ "`getgid hlds`" != "36" ]; then
-		echo "Error: group hlds doesn't have gid=36. Correct this before installing hlds." 1>&2
+if [ -n "`/usr/bin/getgid hlds`" ]; then
+	if [ "`/usr/bin/getgid hlds`" != 137 ]; then
+		echo "Error: group hlds doesn't have gid=137. Correct this before installing hlds." 1>&2
 		exit 1
 	fi
 else
-	/usr/sbin/groupadd -g 36 -r -f hlds
+	/usr/sbin/groupadd -g 137 hlds
 fi
-if [ -n "`id -u hlds 2>/dev/null`" ]; then
-	if [ "`id -u hlds`" != "23" ]; then
-		echo "Error: user hlds doesn't have uid=23. Correct this before installing hlds." 1>&2
+if [ -n "`/bin/id -u hlds 2>/dev/null`" ]; then
+	if [ "`/bin/id -u hlds`" != 137 ]; then
+		echo "Error: user hlds doesn't have uid=137. Correct this before installing hlds." 1>&2
 		exit 1
 	fi
 else
-	/usr/sbin/useradd -u 23 -r -d %{_chroot_home} -s /bin/bash -c "Half-Life Dedicated Server" -g hlds hlds 1>&2
+	/usr/sbin/useradd -u 137 -d %{_chroot_home} -s /bin/bash \
+		-c "Half-Life Dedicated Server" -g hlds hlds 1>&2
 fi
 
 %postun
 if [ "$1" = "0" ]; then
-	echo "Removing user & group hlds."
-	/usr/sbin/userdel hlds
-	/usr/sbin/groupdel hlds
+	%userremove hlds
+	%groupremove hlds
 fi
 
 %files
