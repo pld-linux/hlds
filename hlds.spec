@@ -8,16 +8,12 @@
 Summary:	Half-Life - Linux Dedicated Server
 Summary(pl):	Dedykowany serwer gry Half-Life dla Linuksa
 Name:		hlds
-Version:	3.1.1.1e
+Version:	1.1.2.0.STEAM
 Release:	0.1
 License:	Unknown (Distributable)
 Group:		Applications/Games
-Source0:	http://paszczus.darpa.pl/hlds/%{name}_l_3111_full.tar.gz
-# Source0-md5:	358af895896bf6cf98d7ea4ac6072fd2
-Source1:	http://paszczus.darpa.pl/hlds/cs_15_full.tar.gz
-# Source1-md5:	d688876fa2864ff69ff808432c9e6fe7
-Source2:	http://paszczus.darpa.pl/hlds/%{name}_l_3111e_update.tar.gz
-# Source2-md5:	0156a57f81b38c7a443013ef57e20257
+Source0:	http://paszczus.darpa.pl/hlds_l_1120_full.tgz
+# Source0-md5:	22000aea56f7565119992587ae88dd95
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/bin/id
 Requires(pre):	/usr/sbin/groupadd
@@ -93,17 +89,7 @@ Half-Life.
 %setup -q -n hlds_l
 
 %build
-%if %{with cstrike}
-cp %{SOURCE1} .
-tar zxf %{SOURCE1}
-rm -f cs_15_full.tar.gz
-%endif
-
-cp %{SOURCE2} .
-tar zxf %{SOURCE2}
 chmod u+w ./hlds_run
-cp -a hlds_update/* .
-rm -f hlds_l_3111e_update.tar.gz
 
 %install
 rm -rf $RPM_BUILD_ROOT
