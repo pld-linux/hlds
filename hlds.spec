@@ -4,8 +4,7 @@
 %bcond_with  	dmc          # without Death-Match-Classic  server
 %bcond_with  	ricochet     # without Ricochet server
 %bcond_with  	tfc          # without Team-Fortress server
-
-
+#
 Summary:	Half-Life - Linux Dedicated Server
 Summary(pl):	Dedykowany serwer gry Half-Life dla Linuksa
 Name:		hlds
@@ -20,11 +19,12 @@ Source1:	http://paszczus.darpa.pl/hlds/cs_15_full.tar.gz
 Source2:	http://paszczus.darpa.pl/hlds/%{name}_l_3111e_update.tar.gz
 # Source2-md5:	0156a57f81b38c7a443013ef57e20257
 Requires(pre):	/usr/bin/getgid
+Requires(pre):	/bin/id
 Requires(pre):	/usr/sbin/groupadd
 Requires(pre):	/usr/sbin/useradd
 Requires(postun):	/usr/sbin/groupdel
 Requires(postun):	/usr/sbin/userdel
-BuildArch:	noarch
+ExclusiveArch:	%{ix86}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_chroot_home	/home/hlds
@@ -93,7 +93,6 @@ Half-Life.
 %setup -q -n hlds_l
 
 %build
-
 %if %{with cstrike}
 cp %{SOURCE1} .
 tar zxf %{SOURCE1}
@@ -107,12 +106,11 @@ rm -f hlds_l_3111e_update.tar.gz
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_chroot_home}/{cstrike,dmc,ricochet,tfc,valve}
 install -d $RPM_BUILD_ROOT%{_libdir}
 
-install {hlds,hlds_run,hltv,hlds_amd,hlds_i486,hlds_i686} $RPM_BUILD_ROOT%{_chroot_home}/
-install {hltv.cfg,engine_i386.so,kver.kp,core_i386.so,director_i386.so,proxy_i386.so,engine_amd.so,engine_i486.so,engine_i686.so,filesystem_stdio_i386.so} $RPM_BUILD_ROOT%{_chroot_home}/
+install {hlds,hlds_run,hltv,hlds_amd,hlds_i486,hlds_i686} $RPM_BUILD_ROOT%{_chroot_home}
+install {hltv.cfg,engine_i386.so,kver.kp,core_i386.so,director_i386.so,proxy_i386.so,engine_amd.so,engine_i486.so,engine_i686.so,filesystem_stdio_i386.so} $RPM_BUILD_ROOT%{_chroot_home}
 install {libSteamValidateUserIDTickets.so,libSteamValidateUserIDTickets_i386.so,libhlwon.so} $RPM_BUILD_ROOT%{_libdir}
 
 # mv is for save space on HDD
@@ -183,10 +181,15 @@ fi
 %{_chroot_home}/valve/server.cfg
 %{_chroot_home}/valve/sierra.inf
 %{_chroot_home}/valve/skill.cfg
+%dir %{_chroot_home}/valve/cl_dlls
 %{_chroot_home}/valve/cl_dlls/client.dll
+%dir %{_chroot_home}/valve/dlls
 %{_chroot_home}/valve/dlls/hl_i386.so
+%dir %{_chroot_home}/valve/events
 %{_chroot_home}/valve/events/*.sc
+%dir %{_chroot_home}/valve/maps
 %{_chroot_home}/valve/maps/*.bsp
+%dir %{_chroot_home}/valve/sprites
 %{_chroot_home}/valve/sprites/*.spr
 
 %{_chroot_home}/kver.kp
@@ -204,35 +207,64 @@ fi
 %{_chroot_home}/cstrike/liblist.gam
 %{_chroot_home}/cstrike/delta.lst
 %{_chroot_home}/cstrike/server.cfg
+%dir %{_chroot_home}/cstrike/classes
 %{_chroot_home}/cstrike/classes/*.txt
+%dir %{_chroot_home}/cstrike/cl_dlls
 %{_chroot_home}/cstrike/cl_dlls/client.dll
+%dir %{_chroot_home}/cstrike/dlls
 %{_chroot_home}/cstrike/dlls/cs_i386.so
+%dir %{_chroot_home}/cstrike/events
 %{_chroot_home}/cstrike/events/*.sc
+%dir %{_chroot_home}/cstrike/maps
 %{_chroot_home}/cstrike/maps/*.txt
 %{_chroot_home}/cstrike/maps/*.bsp
 %{_chroot_home}/cstrike/maps/de_storm.res
+%dir %{_chroot_home}/cstrike/media
 %{_chroot_home}/cstrike/media/*.wav
+%dir %{_chroot_home}/cstrike/models
 %{_chroot_home}/cstrike/models/*.mdl
+%dir %{_chroot_home}/cstrike/models/player
+%dir %{_chroot_home}/cstrike/models/player/arctic
 %{_chroot_home}/cstrike/models/player/arctic/arctic.mdl
+%dir %{_chroot_home}/cstrike/models/player/gign
 %{_chroot_home}/cstrike/models/player/gign/gign.mdl
+%dir %{_chroot_home}/cstrike/models/player/gsg9
 %{_chroot_home}/cstrike/models/player/gsg9/gsg9.mdl
+%dir %{_chroot_home}/cstrike/models/player/guerilla
 %{_chroot_home}/cstrike/models/player/guerilla/guerilla.mdl
+%dir %{_chroot_home}/cstrike/models/player/leet
 %{_chroot_home}/cstrike/models/player/leet/leet.mdl
+%dir %{_chroot_home}/cstrike/models/player/sas
 %{_chroot_home}/cstrike/models/player/sas/sas.mdl
+%dir %{_chroot_home}/cstrike/models/player/terror
 %{_chroot_home}/cstrike/models/player/terror/terror.mdl
+%dir %{_chroot_home}/cstrike/models/player/urban
 %{_chroot_home}/cstrike/models/player/urban/urban.mdl
+%dir %{_chroot_home}/cstrike/models/player/vip
 %{_chroot_home}/cstrike/models/player/vip/vip.mdl
+%dir %{_chroot_home}/cstrike/sound
 %{_chroot_home}/cstrike/sound/*.txt
+%dir %{_chroot_home}/cstrike/sound/ambience
 %{_chroot_home}/cstrike/sound/ambience/*.wav
+%dir %{_chroot_home}/cstrike/sound/de_torn
 %{_chroot_home}/cstrike/sound/de_torn/*.wav
+%dir %{_chroot_home}/cstrike/sound/hostage
 %{_chroot_home}/cstrike/sound/hostage/*.wav
+%dir %{_chroot_home}/cstrike/sound/items
 %{_chroot_home}/cstrike/sound/items/*.wav
+%dir %{_chroot_home}/cstrike/sound/misc
 %{_chroot_home}/cstrike/sound/misc/*.wav
+%dir %{_chroot_home}/cstrike/sound/plats
 %{_chroot_home}/cstrike/sound/plats/*.wav
+%dir %{_chroot_home}/cstrike/sound/player
 %{_chroot_home}/cstrike/sound/player/*.wav
+%dir %{_chroot_home}/cstrike/sound/radio
 %{_chroot_home}/cstrike/sound/radio/*.wav
+%dir %{_chroot_home}/cstrike/sound/storm
 %{_chroot_home}/cstrike/sound/storm/*.wav
+%dir %{_chroot_home}/cstrike/sound/weapons
 %{_chroot_home}/cstrike/sound/weapons/*.wav
+%dir %{_chroot_home}/cstrike/sprites
 %{_chroot_home}/cstrike/sprites/*.spr
 %{_chroot_home}/cstrike/sprites/*.txt
 %endif
@@ -246,17 +278,30 @@ fi
 %{_chroot_home}/dmc/dmc.wad
 %{_chroot_home}/dmc/liblist.gam
 %{_chroot_home}/dmc/delta.lst
+%dir %{_chroot_home}/dmc/cl_dlls
 %{_chroot_home}/dmc/cl_dlls/client.dll
+%dir %{_chroot_home}/dmc/dlls
 %{_chroot_home}/dmc/dlls/dmc_i386.so
+%dir %{_chroot_home}/dmc/events
 %{_chroot_home}/dmc/events/*.sc
+%dir %{_chroot_home}/dmc/events/door
 %{_chroot_home}/dmc/events/door/*.sc
+%dir %{_chroot_home}/dmc/maps
 %{_chroot_home}/dmc/maps/*.bsp
+%dir %{_chroot_home}/dmc/models
 %{_chroot_home}/dmc/models/*.mdl
+%dir %{_chroot_home}/dmc/sound
+%dir %{_chroot_home}/dmc/sound/ambience
 %{_chroot_home}/dmc/sound/ambience/*.wav
+%dir %{_chroot_home}/dmc/sound/items
 %{_chroot_home}/dmc/sound/items/*.wav
+%dir %{_chroot_home}/dmc/sound/misc
 %{_chroot_home}/dmc/sound/misc/*.wav
+%dir %{_chroot_home}/dmc/sound/player
 %{_chroot_home}/dmc/sound/player/*.wav
+%dir %{_chroot_home}/dmc/sound/weapons
 %{_chroot_home}/dmc/sound/weapons/*.wav
+%dir %{_chroot_home}/dmc/sprites
 %{_chroot_home}/dmc/sprites/*.spr
 %{_chroot_home}/dmc/sprites/*.txt
 %{_chroot_home}/dmc/sprites/Buildspr.bat
@@ -273,19 +318,33 @@ fi
 %{_chroot_home}/ricochet/delta.lst
 %{_chroot_home}/ricochet/liblist.gam
 %{_chroot_home}/ricochet/ricochet.wad
+%dir %{_chroot_home}/ricochet/cl_dlls
 %{_chroot_home}/ricochet/cl_dlls/client.dll
+%dir %{_chroot_home}/ricochet/dlls
 %{_chroot_home}/ricochet/dlls/ricochet_i386.so
+%dir %{_chroot_home}/ricochet/events
 %{_chroot_home}/ricochet/events/*.sc
+%dir %{_chroot_home}/ricochet/maps
 %{_chroot_home}/ricochet/maps/*.bsp
+%dir %{_chroot_home}/ricochet/models
 %{_chroot_home}/ricochet/models/*.mdl
+%dir %{_chroot_home}/ricochet/models
+%dir %{_chroot_home}/ricochet/models/player
+%dir %{_chroot_home}/ricochet/models/player/female
 %{_chroot_home}/ricochet/models/player/female/female.mdl
 %{_chroot_home}/ricochet/models/player/female/female.bmp
+%dir %{_chroot_home}/ricochet/models/player/male
 %{_chroot_home}/ricochet/models/player/male/*.mdl
+%dir %{_chroot_home}/ricochet/sound
 %{_chroot_home}/ricochet/sound/*.wav
+%dir %{_chroot_home}/ricochet/sound/Items
 %{_chroot_home}/ricochet/sound/Items/gunpickup2.wav
+%dir %{_chroot_home}/ricochet/sound/Vox
 %{_chroot_home}/ricochet/sound/Vox/*.wav
 %{_chroot_home}/ricochet/sound/Vox/*.WAV
+%dir %{_chroot_home}/ricochet/sound/Weapons
 %{_chroot_home}/ricochet/sound/Weapons/*.wav
+%dir %{_chroot_home}/ricochet/sprites
 %{_chroot_home}/ricochet/sprites/*.spr
 %{_chroot_home}/ricochet/sprites/*.txt
 %endif
@@ -301,28 +360,53 @@ fi
 %{_chroot_home}/tfc/*.wad
 %{_chroot_home}/tfc/pak0.pak
 %{_chroot_home}/tfc/valve.rc
+%dir %{_chroot_home}/tfc/cl_dlls
 %{_chroot_home}/tfc/cl_dlls/client.dll
+%dir %{_chroot_home}/tfc/dlls
 %{_chroot_home}/tfc/dlls/tfc_i386.so
+%dir %{_chroot_home}/tfc/events
+%dir %{_chroot_home}/tfc/events/door
 %{_chroot_home}/tfc/events/door/*.sc
+%dir %{_chroot_home}/tfc/events/explore
 %{_chroot_home}/tfc/events/explode/*.sc
+%dir %{_chroot_home}/tfc/events/misc
 %{_chroot_home}/tfc/events/misc/*.sc
+%dir %{_chroot_home}/tfc/events/wpn
 %{_chroot_home}/tfc/events/wpn/*.sc
+%dir %{_chroot_home}/tfc/maps
 %{_chroot_home}/tfc/maps/*.bsp
 %{_chroot_home}/tfc/maps/*.txt
+%dir %{_chroot_home}/tfc/models
 %{_chroot_home}/tfc/models/*.mdl
+%dir %{_chroot_home}/tfc/models/player
+%dir %{_chroot_home}/tfc/models/player/civilian
 %{_chroot_home}/tfc/models/player/civilian/civilian.mdl
+%dir %{_chroot_home}/tfc/models/player/demo
 %{_chroot_home}/tfc/models/player/demo/*.mdl
+%dir %{_chroot_home}/tfc/models/player/engineer
 %{_chroot_home}/tfc/models/player/engineer/*.mdl
+%dir %{_chroot_home}/tfc/models/player/hvyweapon
 %{_chroot_home}/tfc/models/player/hvyweapon/*.mdl
+%dir %{_chroot_home}/tfc/models/player/medic
 %{_chroot_home}/tfc/models/player/medic/*.mdl
+%dir %{_chroot_home}/tfc/models/player/pyro
 %{_chroot_home}/tfc/models/player/pyro/*.mdl
+%dir %{_chroot_home}/tfc/models/player/scout
 %{_chroot_home}/tfc/models/player/scout/*.mdl
+%dir %{_chroot_home}/tfc/models/player/sniper
 %{_chroot_home}/tfc/models/player/sniper/*.mdl
+%dir %{_chroot_home}/tfc/models/player/soldier
 %{_chroot_home}/tfc/models/player/soldier/*.mdl
+%dir %{_chroot_home}/tfc/models/player/spy
 %{_chroot_home}/tfc/models/player/spy/*.mdl
+%dir %{_chroot_home}/tfc/sound
+%dir %{_chroot_home}/tfc/sound/misc
 %{_chroot_home}/tfc/sound/misc/endgame.wav
+%dir %{_chroot_home}/tfc/sound/vox
 %{_chroot_home}/tfc/sound/vox/*.wav
+%dir %{_chroot_home}/tfc/sound/weapons
 %{_chroot_home}/tfc/sound/weapons/*.wav
+%dir %{_chroot_home}/tfc/tfstats
 %{_chroot_home}/tfc/tfstats/*.rul
 %{_chroot_home}/tfc/tfstats/*.txt
 %{_chroot_home}/tfc/tfstats/tfstats_l
