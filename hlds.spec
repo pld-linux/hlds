@@ -126,20 +126,20 @@ rm -rf $RPM_BUILD_ROOT
 
 %pre
 if [ -n "`/usr/bin/getgid hlds`" ]; then
-	if [ "`/usr/bin/getgid hlds`" != 137 ]; then
-		echo "Error: group hlds doesn't have gid=137. Correct this before installing hlds." 1>&2
+	if [ "`/usr/bin/getgid hlds`" != 36 ]; then
+		echo "Error: group hlds doesn't have gid=36. Correct this before installing hlds." 1>&2
 		exit 1
 	fi
 else
-	/usr/sbin/groupadd -g 137 hlds
+	/usr/sbin/groupadd -g 36 hlds
 fi
 if [ -n "`/bin/id -u hlds 2>/dev/null`" ]; then
-	if [ "`/bin/id -u hlds`" != 137 ]; then
-		echo "Error: user hlds doesn't have uid=137. Correct this before installing hlds." 1>&2
+	if [ "`/bin/id -u hlds`" != 23 ]; then
+		echo "Error: user hlds doesn't have uid=23. Correct this before installing hlds." 1>&2
 		exit 1
 	fi
 else
-	/usr/sbin/useradd -u 137 -d %{_chroot_home} -s /bin/bash \
+	/usr/sbin/useradd -u 23 -d %{_chroot_home} -s /bin/bash \
 		-c "Half-Life Dedicated Server" -g hlds hlds 1>&2
 fi
 
