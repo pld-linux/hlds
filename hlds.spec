@@ -271,6 +271,7 @@ fi
 %dir %{_chroot_home}/dmc
 %{_chroot_home}/dmc/*.txt
 %{_chroot_home}/dmc/server.cfg
+%{_chroot_home}/dmc/steam.inf
 %{_chroot_home}/dmc/dmc.wad
 %{_chroot_home}/dmc/liblist.gam
 %{_chroot_home}/dmc/delta.lst
@@ -278,6 +279,7 @@ fi
 %{_chroot_home}/dmc/cl_dlls/client.dll
 %dir %{_chroot_home}/dmc/dlls
 %{_chroot_home}/dmc/dlls/dmc_i386.so
+%{_chroot_home}/dmc/dlls/dmc.dll
 %dir %{_chroot_home}/dmc/events
 %{_chroot_home}/dmc/events/*.sc
 %dir %{_chroot_home}/dmc/events/door
@@ -297,13 +299,13 @@ fi
 %{_chroot_home}/dmc/sound/player/*.wav
 %dir %{_chroot_home}/dmc/sound/weapons
 %{_chroot_home}/dmc/sound/weapons/*.wav
+%dir %{_chroot_home}/dmc/resource/
+%{_chroot_home}/dmc/resource/*.tga
 %dir %{_chroot_home}/dmc/sprites
 %{_chroot_home}/dmc/sprites/*.spr
 %{_chroot_home}/dmc/sprites/*.txt
-%{_chroot_home}/dmc/sprites/Buildspr.bat
-%{_chroot_home}/dmc/sprites/flash1.tga
-%{_chroot_home}/dmc/sprites/flash2.pcx
 %{_chroot_home}/dmc/sprites/logo.qc
+%{_chroot_home}/dmc/sprites/flash1.tga
 %endif
 
 %if %{with ricochet}
