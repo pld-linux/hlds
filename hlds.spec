@@ -10,7 +10,7 @@ Summary(pl):	Dedykowany serwer gry Half-Life dla Linuksa
 Name:		hlds
 Version:	3.1.1.1e
 Release:	0.1
-License:	Unknown
+License:	Unknown (Distributable)
 Group:		Applications/Games
 Source0:	http://paszczus.darpa.pl/hlds/%{name}_l_3111_full.tar.gz
 # Source0-md5:	358af895896bf6cf98d7ea4ac6072fd2
