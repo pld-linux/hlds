@@ -9,11 +9,11 @@ Summary:	Half-Life - Linux Dedicated Server
 Summary(pl):	Dedykowany serwer gry Half-Life dla Linuksa
 Name:		hlds
 Version:	1.1.2.0.STEAM
-Release:	0.2
+Release:	0.3
 License:	custom (EULA), non-distributable
 Group:		Applications/Games
-Source0:        http://paszczus.darpa.pl/%{name}_l_1120_full.tgz
-# NoSource0-md5:	22000aea56f7565119992587ae88dd95
+Source0:        http://paszczus.darpa.pl/%{name}_l_1120_full.tar.bz2
+# NoSource0-md5:	12ff9d0161575b8b8180b7f0041af036
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/bin/id
 Requires(pre):	/usr/sbin/groupadd
@@ -160,35 +160,76 @@ fi
 %attr(755,hlds,hlds) %{_chroot_home}/*.so
 
 %dir %{_chroot_home}/valve
+%{_chroot_home}/valve/*.cfg
 %{_chroot_home}/valve/*.txt
 %{_chroot_home}/valve/*.lst
 %{_chroot_home}/valve/*.wad
+%{_chroot_home}/valve/game.ico
 %{_chroot_home}/valve/valve.rc
 %{_chroot_home}/valve/liblist.gam
-%{_chroot_home}/valve/steam.inf
-#%{_chroot_home}/valve/pak0.pak
 %{_chroot_home}/valve/server.cfg
-#%{_chroot_home}/valve/sierra.inf
-%{_chroot_home}/valve/skill.cfg
+%{_chroot_home}/valve/steam.inf
 %dir %{_chroot_home}/valve/cl_dlls
 %{_chroot_home}/valve/cl_dlls/client.dll
 %dir %{_chroot_home}/valve/dlls
+%{_chroot_home}/valve/dlls/hl.dll
 %{_chroot_home}/valve/dlls/hl_i386.so
+%{_chroot_home}/valve/dlls/hl_amd64.so
 %dir %{_chroot_home}/valve/events
 %{_chroot_home}/valve/events/*.sc
+%dir %{_chroot_home}/valve/gfx
 %dir %{_chroot_home}/valve/maps
 %{_chroot_home}/valve/maps/*.bsp
-%dir %{_chroot_home}/valve/sprites
-%{_chroot_home}/valve/sprites/*.spr
-%{_chroot_home}/valve/sprites/*.txt
+%dir %{_chroot_home}/valve/models
+%{_chroot_home}/valve/models/*.mdl
+%dir %{_chroot_home}/valve/models/player
+%dir %{_chroot_home}/valve/models/player/barney
+%{_chroot_home}/valve/models/player/barney/barney.mdl
+%dir %{_chroot_home}/valve/models/player/gina
+%{_chroot_home}/valve/models/player/gina/Gina.mdl
+%dir %{_chroot_home}/valve/models/player/gman
+%{_chroot_home}/valve/models/player/gman/Gman.mdl
+%dir %{_chroot_home}/valve/models/player/gordon
+%{_chroot_home}/valve/models/player/gordon/gordon.mdl
+%dir %{_chroot_home}/valve/models/player/helmet
+%{_chroot_home}/valve/models/player/helmet/Helmet.mdl
+%dir %{_chroot_home}/valve/models/player/hgrunt
+%{_chroot_home}/valve/models/player/hgrunt/Hgrunt.mdl
+%dir %{_chroot_home}/valve/models/player/recon
+%{_chroot_home}/valve/models/player/recon/recon.mdl
+%dir %{_chroot_home}/valve/models/player/robo
+%{_chroot_home}/valve/models/player/robo/robo.mdl
+%dir %{_chroot_home}/valve/models/player/scientist
+%{_chroot_home}/valve/models/player/scientist/Scientist.mdl
+%dir %{_chroot_home}/valve/models/player/zombie
+%{_chroot_home}/valve/models/player/zombie/zombie.mdl
+%dir %{_chroot_home}/valve/scripts
+%{_chroot_home}/valve/scripts/voicemodel.txt
 %dir %{_chroot_home}/valve/sound
-%{_chroot_home}/valve/sound/sentences.txt
+%{_chroot_home}/valve/sound/*.txt
+%dir %{_chroot_home}/valve/sound/agrunt
+%{_chroot_home}/valve/sound/agrunt/*.wav
+%dir %{_chroot_home}/valve/sound/ambience
+%{_chroot_home}/valve/sound/ambience/*.wav
+%dir %{_chroot_home}/valve/sound/buttons
+%{_chroot_home}/valve/sound/buttons/*.wav
+%dir %{_chroot_home}/valve/sound/fvox
+%{_chroot_home}/valve/sound/fvox/beep.wav
+%dir %{_chroot_home}/valve/sound/hornet
+%{_chroot_home}/valve/sound/hornet/*.wav
+%dir %{_chroot_home}/valve/sound/plats
+%{_chroot_home}/valve/sound/plats/*.wav
 %dir %{_chroot_home}/valve/sound/player
 %{_chroot_home}/valve/sound/player/*.wav
 %dir %{_chroot_home}/valve/sound/squeek
 %{_chroot_home}/valve/sound/squeek/*.wav
 %dir %{_chroot_home}/valve/sound/turret
 %{_chroot_home}/valve/sound/turret/*.wav
+%dir %{_chroot_home}/valve/sound/UI
+%{_chroot_home}/valve/sound/UI/*.wav
+%dir %{_chroot_home}/valve/sprites
+%{_chroot_home}/valve/sprites/*.spr
+%{_chroot_home}/valve/sprites/*.txt
 
 %{_libdir}/*.so
 
@@ -270,9 +311,10 @@ fi
 %defattr(644,hlds,hlds,755)
 %dir %{_chroot_home}/dmc
 %{_chroot_home}/dmc/*.txt
+%{_chroot_home}/dmc/*.wad
+%{_chroot_home}/dmc/game.ico
 %{_chroot_home}/dmc/server.cfg
 %{_chroot_home}/dmc/steam.inf
-%{_chroot_home}/dmc/dmc.wad
 %{_chroot_home}/dmc/liblist.gam
 %{_chroot_home}/dmc/delta.lst
 %dir %{_chroot_home}/dmc/cl_dlls
@@ -301,6 +343,9 @@ fi
 %{_chroot_home}/dmc/sound/weapons/*.wav
 %dir %{_chroot_home}/dmc/resource/
 %{_chroot_home}/dmc/resource/*.tga
+%{_chroot_home}/dmc/resource/GameMenu.res
+%{_chroot_home}/dmc/resource/dmc_english.txt
+%{_chroot_home}/dmc/resource/game_menu.TGA
 %dir %{_chroot_home}/dmc/sprites
 %{_chroot_home}/dmc/sprites/*.spr
 %{_chroot_home}/dmc/sprites/*.txt
@@ -314,11 +359,14 @@ fi
 %dir %{_chroot_home}/ricochet
 %{_chroot_home}/ricochet/*.txt
 %{_chroot_home}/ricochet/delta.lst
+%{_chroot_home}/ricochet/game.ico
 %{_chroot_home}/ricochet/liblist.gam
-%{_chroot_home}/ricochet/ricochet.wad
+%{_chroot_home}/ricochet/*.wad
+%{_chroot_home}/ricochet/steam.inf
 %dir %{_chroot_home}/ricochet/cl_dlls
 %{_chroot_home}/ricochet/cl_dlls/client.dll
 %dir %{_chroot_home}/ricochet/dlls
+%{_chroot_home}/ricochet/dlls/mp.dll
 %{_chroot_home}/ricochet/dlls/ricochet_i386.so
 %dir %{_chroot_home}/ricochet/events
 %{_chroot_home}/ricochet/events/*.sc
@@ -326,11 +374,9 @@ fi
 %{_chroot_home}/ricochet/maps/*.bsp
 %dir %{_chroot_home}/ricochet/models
 %{_chroot_home}/ricochet/models/*.mdl
-%dir %{_chroot_home}/ricochet/models
 %dir %{_chroot_home}/ricochet/models/player
 %dir %{_chroot_home}/ricochet/models/player/female
 %{_chroot_home}/ricochet/models/player/female/female.mdl
-%{_chroot_home}/ricochet/models/player/female/female.bmp
 %dir %{_chroot_home}/ricochet/models/player/male
 %{_chroot_home}/ricochet/models/player/male/*.mdl
 %dir %{_chroot_home}/ricochet/sound
@@ -353,27 +399,33 @@ fi
 %dir %{_chroot_home}/tfc
 %{_chroot_home}/tfc/*.txt
 %{_chroot_home}/tfc/delta.lst
+%{_chroot_home}/tfc/game.ico
 %{_chroot_home}/tfc/liblist.gam
-%{_chroot_home}/tfc/server.cfg
+%{_chroot_home}/tfc/steam.inf
 %{_chroot_home}/tfc/*.wad
-%{_chroot_home}/tfc/pak0.pak
-%{_chroot_home}/tfc/valve.rc
+%{_chroot_home}/tfc/tfc.WAD
+%{_chroot_home}/tfc/GameServerConfig.vdf
 %dir %{_chroot_home}/tfc/cl_dlls
 %{_chroot_home}/tfc/cl_dlls/client.dll
 %dir %{_chroot_home}/tfc/dlls
 %{_chroot_home}/tfc/dlls/tfc_i386.so
+%{_chroot_home}/tfc/dlls/tfc.dll
 %dir %{_chroot_home}/tfc/events
 %dir %{_chroot_home}/tfc/events/door
 %{_chroot_home}/tfc/events/door/*.sc
-%dir %{_chroot_home}/tfc/events/explore
+%dir %{_chroot_home}/tfc/events/explode
 %{_chroot_home}/tfc/events/explode/*.sc
 %dir %{_chroot_home}/tfc/events/misc
 %{_chroot_home}/tfc/events/misc/*.sc
 %dir %{_chroot_home}/tfc/events/wpn
 %{_chroot_home}/tfc/events/wpn/*.sc
+%dir %{_chroot_home}/tfc/manual
+%{_chroot_home}/tfc/manual/*.gif
+%{_chroot_home}/tfc/manual/*.htm
+%{_chroot_home}/tfc/manual/*.jpg
+%{_chroot_home}/tfc/manual/regexp.html
 %dir %{_chroot_home}/tfc/maps
 %{_chroot_home}/tfc/maps/*.bsp
-%{_chroot_home}/tfc/maps/*.txt
 %dir %{_chroot_home}/tfc/models
 %{_chroot_home}/tfc/models/*.mdl
 %dir %{_chroot_home}/tfc/models/player
@@ -397,15 +449,34 @@ fi
 %{_chroot_home}/tfc/models/player/soldier/*.mdl
 %dir %{_chroot_home}/tfc/models/player/spy
 %{_chroot_home}/tfc/models/player/spy/*.mdl
+%dir %{_chroot_home}/tfc/resource
+%{_chroot_home}/tfc/resource/*.res
+%{_chroot_home}/tfc/resource/*.tga
+%{_chroot_home}/tfc/resource/tfc_english.txt
+%dir %{_chroot_home}/tfc/resource/UI
+%{_chroot_home}/tfc/resource/UI/*.res
 %dir %{_chroot_home}/tfc/sound
+%dir %{_chroot_home}/tfc/sound/ambience
+%{_chroot_home}/tfc/sound/ambience/*.wav
+%dir %{_chroot_home}/tfc/sound/items
+%{_chroot_home}/tfc/sound/items/*.wav
 %dir %{_chroot_home}/tfc/sound/misc
-%{_chroot_home}/tfc/sound/misc/endgame.wav
+%{_chroot_home}/tfc/sound/misc/*.wav
+%dir %{_chroot_home}/tfc/sound/player
+%{_chroot_home}/tfc/sound/player/*.wav
+%{_chroot_home}/tfc/sound/sentences.txt
+%dir %{_chroot_home}/tfc/sound/speech
+%{_chroot_home}/tfc/sound/speech/*.wav
 %dir %{_chroot_home}/tfc/sound/vox
 %{_chroot_home}/tfc/sound/vox/*.wav
 %dir %{_chroot_home}/tfc/sound/weapons
 %{_chroot_home}/tfc/sound/weapons/*.wav
-%dir %{_chroot_home}/tfc/tfstats
-%{_chroot_home}/tfc/tfstats/*.rul
-%{_chroot_home}/tfc/tfstats/*.txt
-%{_chroot_home}/tfc/tfstats/tfstats_l
+%dir %{_chroot_home}/tfc/sprites
+%{_chroot_home}/tfc/sprites/*.spr
+%{_chroot_home}/tfc/sprites/*.txt
+%{_chroot_home}/tfc/sprites/*.qc
+%dir %{_chroot_home}/tfc/sprites/bmp
+%{_chroot_home}/tfc/sprites/bmp/*.bmp
+%dir %{_chroot_home}/tfc/sprites/hudbmps
+%{_chroot_home}/tfc/sprites/hudbmps/*.bmp
 %endif
