@@ -101,6 +101,7 @@ rm -f cs_15_full.tar.gz
 
 cp %{SOURCE2} .
 tar zxf %{SOURCE2}
+chmod u+w ./hlds_run
 cp -a hlds_update/* .
 rm -f hlds_l_3111e_update.tar.gz
 
