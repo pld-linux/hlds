@@ -9,10 +9,10 @@ Summary:	Half-Life - Linux Dedicated Server
 Summary(pl):	Dedykowany serwer gry Half-Life dla Linuksa
 Name:		hlds
 Version:	1.1.2.0.STEAM
-Release:	0.1
+Release:	0.2
 License:	custom (EULA), non-distributable
 Group:		Applications/Games
-Source0:	http://paszczus.darpa.pl/hlds_l_1120_full.tgz
+Source0:        http://paszczus.darpa.pl/%{name}_l_1120_full.tgz
 # NoSource0-md5:	22000aea56f7565119992587ae88dd95
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/bin/id
@@ -96,9 +96,9 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_chroot_home}/{cstrike,dmc,ricochet,tfc,valve}
 install -d $RPM_BUILD_ROOT%{_libdir}
 
-install {hlds,hlds_run,hltv,hlds_amd,hlds_i486,hlds_i686} $RPM_BUILD_ROOT%{_chroot_home}
-install {hltv.cfg,engine_i386.so,kver.kp,core_i386.so,director_i386.so,proxy_i386.so,engine_amd.so,engine_i486.so,engine_i686.so,filesystem_stdio_i386.so} $RPM_BUILD_ROOT%{_chroot_home}
-install {libSteamValidateUserIDTickets.so,libSteamValidateUserIDTickets_i386.so,libhlwon.so} $RPM_BUILD_ROOT%{_libdir}
+install {hlds_run,hltv,hlds_amd,hlds_amd64,hlds_i486,hlds_i686,steam} $RPM_BUILD_ROOT%{_chroot_home}
+install {core_i386.so,proxy_i386.so,engine_amd.so,engine_amd64.so,engine_i486.so,engine_i686.so,filesystem_stdio_i386.so,filesystem_stdio_amd64.so} $RPM_BUILD_ROOT%{_chroot_home}
+install {libSteamValidateUserIDTickets_amd64.so,libSteamValidateUserIDTickets_i386.so} $RPM_BUILD_ROOT%{_libdir}
 
 # mv is for save space on HDD
 
@@ -148,14 +148,15 @@ fi
 
 %files
 %defattr(644,hlds,hlds,755)
-%doc ChangeLog EULA.txt HLTV-Readme.txt linuxreadme.txt
+%doc linuxreadme.txt
 %dir %{_chroot_home}
-%attr(755,hlds,hlds) %{_chroot_home}/hlds
 %attr(755,hlds,hlds) %{_chroot_home}/hlds_amd
+%attr(755,hlds,hlds) %{_chroot_home}/hlds_amd64
 %attr(755,hlds,hlds) %{_chroot_home}/hlds_i486
 %attr(755,hlds,hlds) %{_chroot_home}/hlds_i686
 %attr(755,hlds,hlds) %{_chroot_home}/hlds_run
 %attr(755,hlds,hlds) %{_chroot_home}/hltv
+%attr(755,hlds,hlds) %{_chroot_home}/steam
 %attr(755,hlds,hlds) %{_chroot_home}/*.so
 
 %dir %{_chroot_home}/valve
@@ -164,9 +165,10 @@ fi
 %{_chroot_home}/valve/*.wad
 %{_chroot_home}/valve/valve.rc
 %{_chroot_home}/valve/liblist.gam
-%{_chroot_home}/valve/pak0.pak
+%{_chroot_home}/valve/steam.inf
+#%{_chroot_home}/valve/pak0.pak
 %{_chroot_home}/valve/server.cfg
-%{_chroot_home}/valve/sierra.inf
+#%{_chroot_home}/valve/sierra.inf
 %{_chroot_home}/valve/skill.cfg
 %dir %{_chroot_home}/valve/cl_dlls
 %{_chroot_home}/valve/cl_dlls/client.dll
@@ -178,9 +180,16 @@ fi
 %{_chroot_home}/valve/maps/*.bsp
 %dir %{_chroot_home}/valve/sprites
 %{_chroot_home}/valve/sprites/*.spr
+%{_chroot_home}/valve/sprites/*.txt
+%dir %{_chroot_home}/valve/sound
+%{_chroot_home}/valve/sound/sentences.txt
+%dir %{_chroot_home}/valve/sound/player
+%{_chroot_home}/valve/sound/player/*.wav
+%dir %{_chroot_home}/valve/sound/squeek
+%{_chroot_home}/valve/sound/squeek/*.wav
+%dir %{_chroot_home}/valve/sound/turret
+%{_chroot_home}/valve/sound/turret/*.wav
 
-%{_chroot_home}/kver.kp
-%{_chroot_home}/hltv.cfg
 %{_libdir}/*.so
 
 %if %{with cstrike}
@@ -189,13 +198,13 @@ fi
 %dir %{_chroot_home}/cstrike
 %{_chroot_home}/cstrike/*.wad
 %{_chroot_home}/cstrike/*.txt
-%{_chroot_home}/cstrike/cs_cbble.rad
-%{_chroot_home}/cstrike/cstrike.ico
+#%{_chroot_home}/cstrike/cs_cbble.rad
+#%{_chroot_home}/cstrike/cstrike.ico
 %{_chroot_home}/cstrike/liblist.gam
 %{_chroot_home}/cstrike/delta.lst
 %{_chroot_home}/cstrike/server.cfg
-%dir %{_chroot_home}/cstrike/classes
-%{_chroot_home}/cstrike/classes/*.txt
+#%dir %{_chroot_home}/cstrike/classes
+#%{_chroot_home}/cstrike/classes/*.txt
 %dir %{_chroot_home}/cstrike/cl_dlls
 %{_chroot_home}/cstrike/cl_dlls/client.dll
 %dir %{_chroot_home}/cstrike/dlls
@@ -203,11 +212,11 @@ fi
 %dir %{_chroot_home}/cstrike/events
 %{_chroot_home}/cstrike/events/*.sc
 %dir %{_chroot_home}/cstrike/maps
-%{_chroot_home}/cstrike/maps/*.txt
+#%{_chroot_home}/cstrike/maps/*.txt
 %{_chroot_home}/cstrike/maps/*.bsp
-%{_chroot_home}/cstrike/maps/de_storm.res
-%dir %{_chroot_home}/cstrike/media
-%{_chroot_home}/cstrike/media/*.wav
+#%{_chroot_home}/cstrike/maps/de_storm.res
+#%dir %{_chroot_home}/cstrike/media
+#%{_chroot_home}/cstrike/media/*.wav
 %dir %{_chroot_home}/cstrike/models
 %{_chroot_home}/cstrike/models/*.mdl
 %dir %{_chroot_home}/cstrike/models/player
@@ -253,7 +262,7 @@ fi
 %{_chroot_home}/cstrike/sound/weapons/*.wav
 %dir %{_chroot_home}/cstrike/sprites
 %{_chroot_home}/cstrike/sprites/*.spr
-%{_chroot_home}/cstrike/sprites/*.txt
+#%{_chroot_home}/cstrike/sprites/*.txt
 %endif
 
 %if %{with dmc}
