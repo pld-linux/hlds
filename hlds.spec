@@ -12,7 +12,7 @@ Version:	1.1.2.0.STEAM
 Release:	1
 License:	custom (EULA), non-distributable
 Group:		Applications/Games
-Source0:        http://paszczus.darpa.pl/%{name}_l_1120_full.tar.bz2
+Source0:	%{name}_l_1120_full.tar.bz2
 # NoSource0-md5:	12ff9d0161575b8b8180b7f0041af036
 BuildRequires:	rpmbuild(macros) >= 1.159
 Requires(pre):	/bin/id
