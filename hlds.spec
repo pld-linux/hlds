@@ -1,9 +1,9 @@
 #
 # Conditional build:
-%bcond_without  cstrike      # without Counter-Strike server
-%bcond_with  	dmc          # without Death-Match-Classic  server
-%bcond_with  	ricochet     # without Ricochet server
-%bcond_with  	tfc          # without Team-Fortress server
+%bcond_without	cstrike		# without Counter-Strike server
+%bcond_with	dmc		# without Death-Match-Classic server
+%bcond_with	ricochet	# without Ricochet server
+%bcond_with	tfc		# without Team-Fortress server
 #
 Summary:	Half-Life - Linux Dedicated Server
 Summary(pl):	Dedykowany serwer gry Half-Life dla Linuksa
@@ -53,7 +53,7 @@ Half-Life.
 Summary:	Death-Match-Classic - Linux Dedicated Server
 Summary(pl):	Dedykowany serwer gry Death-Match-Classic dla Linuksa
 Group:		Applications/Games
-Requires:       %{name} = %{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 
 %description dmc
 Linux Dedicated Server of Death-Match-Classic Game based on Half-Life
@@ -67,7 +67,7 @@ Half-Life.
 Summary:	Ricochet - Linux Dedicated Server
 Summary(pl):	Dedykowany serwer gry Ricochet dla Linuksa
 Group:		Applications/Games
-Requires:       %{name} = %{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 
 %description ricochet
 Linux Dedicated Server of Ricochet Game based on Half-Life server.
@@ -79,7 +79,7 @@ Dedykowany serwer gry Ricochet pod Linuksa oparty o serwer Half-Life.
 Summary:	Team-Fortress - Linux Dedicated Server
 Summary(pl):	Dedykowany serwer gry Team-Fortress dla Linuksa
 Group:		Applications/Games
-Requires:       %{name} = %{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 
 %description tfc
 Linux Dedicated Server of Team-Fortress Game based on Half-Life
@@ -136,27 +136,27 @@ rm -rf $RPM_BUILD_ROOT
 
 %pre
 if [ -n "`getgid hlds`" ]; then
-        if [ "`getgid hlds`" != "36" ]; then
-                echo "Error: group hlds doesn't have gid=36. Correct this before installing hlds." 1>&2
-                exit 1
-        fi
+	if [ "`getgid hlds`" != "36" ]; then
+		echo "Error: group hlds doesn't have gid=36. Correct this before installing hlds." 1>&2
+		exit 1
+	fi
 else
-        /usr/sbin/groupadd -g 36 -r -f hlds
+	/usr/sbin/groupadd -g 36 -r -f hlds
 fi
 if [ -n "`id -u hlds 2>/dev/null`" ]; then
-        if [ "`id -u hlds`" != "23" ]; then
-                echo "Error: user hlds doesn't have uid=23. Correct this before installing hlds." 1>&2
-                exit 1
-        fi
+	if [ "`id -u hlds`" != "23" ]; then
+		echo "Error: user hlds doesn't have uid=23. Correct this before installing hlds." 1>&2
+		exit 1
+	fi
 else
-        /usr/sbin/useradd -u 23 -r -d %{_chroot_home} -s /bin/bash -c "Half-Life Dedicated Server" -g hlds hlds 1>&2
+	/usr/sbin/useradd -u 23 -r -d %{_chroot_home} -s /bin/bash -c "Half-Life Dedicated Server" -g hlds hlds 1>&2
 fi
 
 %postun
 if [ "$1" = "0" ]; then
 	echo "Removing user & group hlds."
-        /usr/sbin/userdel hlds
-        /usr/sbin/groupdel hlds
+	/usr/sbin/userdel hlds
+	/usr/sbin/groupdel hlds
 fi
 
 %files
