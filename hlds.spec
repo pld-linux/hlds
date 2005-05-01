@@ -14,7 +14,7 @@ License:	custom (EULA), non-distributable
 Group:		Applications/Games
 Source0:	%{name}_l_1120_full.tar.bz2
 # NoSource0-md5:	12ff9d0161575b8b8180b7f0041af036
-BuildRequires:	rpmbuild(macros) >= 1.159
+BuildRequires:	rpmbuild(macros) >= 1.202
 Requires(pre):	/bin/id
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
@@ -125,23 +125,8 @@ mv valve/* $RPM_BUILD_ROOT%{_chroot_home}/valve
 rm -rf $RPM_BUILD_ROOT
 
 %pre
-if [ -n "`/usr/bin/getgid hlds`" ]; then
-	if [ "`/usr/bin/getgid hlds`" != 36 ]; then
-		echo "Error: group hlds doesn't have gid=36. Correct this before installing hlds." 1>&2
-		exit 1
-	fi
-else
-	/usr/sbin/groupadd -g 36 hlds
-fi
-if [ -n "`/bin/id -u hlds 2>/dev/null`" ]; then
-	if [ "`/bin/id -u hlds`" != 23 ]; then
-		echo "Error: user hlds doesn't have uid=23. Correct this before installing hlds." 1>&2
-		exit 1
-	fi
-else
-	/usr/sbin/useradd -u 23 -d %{_chroot_home} -s /bin/bash \
-		-c "Half-Life Dedicated Server" -g hlds hlds 1>&2
-fi
+%groupadd -g 36 hlds
+%useradd -u 23 -d %{_chroot_home} -s /bin/bash -c "Half-Life Dedicated Server" -g hlds hlds
 
 %postun
 if [ "$1" = "0" ]; then
