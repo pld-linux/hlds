@@ -99,9 +99,9 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_chroot_home}/{cstrike,dmc,ricochet,tfc,valve}
 install -d $RPM_BUILD_ROOT%{_libdir}
 
-install {hlds_run,hltv,hlds_amd,hlds_amd64,hlds_i486,hlds_i686,steam} $RPM_BUILD_ROOT%{_chroot_home}
-install {core_i386.so,proxy_i386.so,engine_amd.so,engine_amd64.so,engine_i486.so,engine_i686.so,filesystem_stdio_i386.so,filesystem_stdio_amd64.so} $RPM_BUILD_ROOT%{_chroot_home}
-install {libSteamValidateUserIDTickets_amd64.so,libSteamValidateUserIDTickets_i386.so} $RPM_BUILD_ROOT%{_libdir}
+install hlds_run hltv hlds_amd hlds_amd64 hlds_i486 hlds_i686 steam $RPM_BUILD_ROOT%{_chroot_home}
+install core_i386.so proxy_i386.so engine_amd.so engine_amd64.so engine_i486.so engine_i686.so filesystem_stdio_i386.so filesystem_stdio_amd64.so $RPM_BUILD_ROOT%{_chroot_home}
+install libSteamValidateUserIDTickets_amd64.so libSteamValidateUserIDTickets_i386.so $RPM_BUILD_ROOT%{_libdir}
 
 # mv is for save space on HDD
 
@@ -219,7 +219,7 @@ fi
 %{_chroot_home}/valve/sprites/*.spr
 %{_chroot_home}/valve/sprites/*.txt
 
-%{_libdir}/*.so
+%attr(755,root,root) %{_libdir}/*.so
 
 %if %{with cstrike}
 %files cstrike
