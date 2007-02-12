@@ -6,7 +6,7 @@
 %bcond_with	tfc		# without Team-Fortress server
 #
 Summary:	Half-Life - Linux Dedicated Server
-Summary(pl):	Dedykowany serwer gry Half-Life dla Linuksa
+Summary(pl.UTF-8):   Dedykowany serwer gry Half-Life dla Linuksa
 Name:		hlds
 Version:	1.1.2.0.STEAM
 Release:	1
@@ -31,12 +31,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 Linux Dedicated Server of Half-Life Game.
 
-%description -l pl
+%description -l pl.UTF-8
 Dedykowany serwer gry Half-Life pod Linuksa.
 
 %package cstrike
 Summary:	Counter-Strike - Linux Dedicated Server
-Summary(pl):	Dedykowany serwer gry Counter-Strike dla Linuksa
+Summary(pl.UTF-8):   Dedykowany serwer gry Counter-Strike dla Linuksa
 Group:		Applications/Games
 Requires:	%{name} = %{version}-%{release}
 
@@ -44,13 +44,13 @@ Requires:	%{name} = %{version}-%{release}
 Linux Dedicated Server of Counter-Strike Game based on Half-Life
 server.
 
-%description cstrike -l pl
+%description cstrike -l pl.UTF-8
 Dedykowany serwer gry Counter-Strike pod Linuksa oparty o serwer
 Half-Life.
 
 %package dmc
 Summary:	Death-Match-Classic - Linux Dedicated Server
-Summary(pl):	Dedykowany serwer gry Death-Match-Classic dla Linuksa
+Summary(pl.UTF-8):   Dedykowany serwer gry Death-Match-Classic dla Linuksa
 Group:		Applications/Games
 Requires:	%{name} = %{version}-%{release}
 
@@ -58,25 +58,25 @@ Requires:	%{name} = %{version}-%{release}
 Linux Dedicated Server of Death-Match-Classic Game based on Half-Life
 server.
 
-%description dmc -l pl
+%description dmc -l pl.UTF-8
 Dedykowany serwer gry Death-Match-Classic pod Linuksa oparty o serwer
 Half-Life.
 
 %package ricochet
 Summary:	Ricochet - Linux Dedicated Server
-Summary(pl):	Dedykowany serwer gry Ricochet dla Linuksa
+Summary(pl.UTF-8):   Dedykowany serwer gry Ricochet dla Linuksa
 Group:		Applications/Games
 Requires:	%{name} = %{version}-%{release}
 
 %description ricochet
 Linux Dedicated Server of Ricochet Game based on Half-Life server.
 
-%description ricochet -l pl
+%description ricochet -l pl.UTF-8
 Dedykowany serwer gry Ricochet pod Linuksa oparty o serwer Half-Life.
 
 %package tfc
 Summary:	Team-Fortress - Linux Dedicated Server
-Summary(pl):	Dedykowany serwer gry Team-Fortress dla Linuksa
+Summary(pl.UTF-8):   Dedykowany serwer gry Team-Fortress dla Linuksa
 Group:		Applications/Games
 Requires:	%{name} = %{version}-%{release}
 
@@ -84,7 +84,7 @@ Requires:	%{name} = %{version}-%{release}
 Linux Dedicated Server of Team-Fortress Game based on Half-Life
 server.
 
-%description tfc -l pl
+%description tfc -l pl.UTF-8
 Dedykowany serwer gry Team-Fortress pod Linuksa oparty o serwer
 Half-Life.
 
