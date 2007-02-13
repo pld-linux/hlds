@@ -6,7 +6,7 @@
 %bcond_with	tfc		# without Team-Fortress server
 #
 Summary:	Half-Life - Linux Dedicated Server
-Summary(pl.UTF-8):   Dedykowany serwer gry Half-Life dla Linuksa
+Summary(pl.UTF-8):	Dedykowany serwer gry Half-Life dla Linuksa
 Name:		hlds
 Version:	1.1.2.0.STEAM
 Release:	1
@@ -36,7 +36,7 @@ Dedykowany serwer gry Half-Life pod Linuksa.
 
 %package cstrike
 Summary:	Counter-Strike - Linux Dedicated Server
-Summary(pl.UTF-8):   Dedykowany serwer gry Counter-Strike dla Linuksa
+Summary(pl.UTF-8):	Dedykowany serwer gry Counter-Strike dla Linuksa
 Group:		Applications/Games
 Requires:	%{name} = %{version}-%{release}
 
@@ -50,7 +50,7 @@ Half-Life.
 
 %package dmc
 Summary:	Death-Match-Classic - Linux Dedicated Server
-Summary(pl.UTF-8):   Dedykowany serwer gry Death-Match-Classic dla Linuksa
+Summary(pl.UTF-8):	Dedykowany serwer gry Death-Match-Classic dla Linuksa
 Group:		Applications/Games
 Requires:	%{name} = %{version}-%{release}
 
@@ -64,7 +64,7 @@ Half-Life.
 
 %package ricochet
 Summary:	Ricochet - Linux Dedicated Server
-Summary(pl.UTF-8):   Dedykowany serwer gry Ricochet dla Linuksa
+Summary(pl.UTF-8):	Dedykowany serwer gry Ricochet dla Linuksa
 Group:		Applications/Games
 Requires:	%{name} = %{version}-%{release}
 
@@ -76,7 +76,7 @@ Dedykowany serwer gry Ricochet pod Linuksa oparty o serwer Half-Life.
 
 %package tfc
 Summary:	Team-Fortress - Linux Dedicated Server
-Summary(pl.UTF-8):   Dedykowany serwer gry Team-Fortress dla Linuksa
+Summary(pl.UTF-8):	Dedykowany serwer gry Team-Fortress dla Linuksa
 Group:		Applications/Games
 Requires:	%{name} = %{version}-%{release}
 
